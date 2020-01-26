@@ -86,3 +86,88 @@ usuario = {
     idade: 31
 };
 console.log(usuario);
+var funcionario = {
+    supervisores: [
+        'Marcia',
+        'Rafael'
+    ],
+    baterPonto: function (horario) {
+        if (horario <= 8)
+            return 'Ponto normal';
+        else
+            return 'Fora do horario';
+    }
+};
+var funcionario2 = {
+    supervisores: ['Joao'],
+    baterPonto: function (hora) {
+        if (hora <= 8)
+            return 'Ponto normal';
+        else
+            return 'Fora do horario';
+    }
+};
+console.log(funcionario.supervisores);
+console.log(funcionario.baterPonto(8));
+console.log(funcionario.baterPonto(9));
+//funcionario = {}
+//Union Types
+var nota = 10;
+console.log("Minha nota \u00E9 " + nota + "!");
+nota = '10';
+console.log("Minha nota \u00E9 " + nota + "!");
+//nota = true
+//Checando tipos 
+var valor = 30;
+if (typeof valor == 'number') {
+    console.log('É um valor number!');
+}
+else {
+    console.log(typeof valor);
+}
+//never 
+function falha(msg) {
+    throw new Error(msg);
+}
+var produto = {
+    nome: 'Sabao',
+    preco: -1,
+    validarProduto: function () {
+        if (!this.nome || this.nome.trim().length == 0) {
+            falha('Precisar ter um nome');
+        }
+        if (this.preco <= 0) {
+            falha('Preco invalido');
+        }
+    }
+};
+//produto.validarProduto()
+var altura = 12;
+//altura = null 
+var alturaOpcional = 12;
+alturaOpcional = null;
+var contato1 = {
+    nome: 'Fulano',
+    tel1: '911111',
+    tel2: null
+};
+console.log(contato1.nome);
+console.log(contato1.tel1);
+console.log(contato1.tel2);
+//let podeSerNulo = null // assume any por padrao
+var podeSerNulo = null;
+podeSerNulo = 12;
+console.log(podeSerNulo);
+podeSerNulo = 'abc';
+console.log(podeSerNulo);
+var correntista = {
+    nome: 'Rodrigo Ribeiro',
+    contaBancaria: {
+        saldo: 10,
+        depositar: function (valor) {
+            this.saldo += valor;
+        }
+    },
+    contatos: ['2199999', '2100000']
+};
+console.log(correntista.contaBancaria.depositar(3000));
