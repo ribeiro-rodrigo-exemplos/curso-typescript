@@ -171,3 +171,4 @@ var correntista = {
     contatos: ['2199999', '2100000']
 };
 console.log(correntista.contaBancaria.depositar(3000));
+//# sourceMappingURL=tipos.js.map
