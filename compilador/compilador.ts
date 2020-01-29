@@ -12,7 +12,7 @@ function soma(a: any, b: any){
 
 let qualquerCoisa
 qualquerCoisa = 12 
-qualquerCoisa = 'abc'
+qualquerCoisa = 'abcd'
 
 function saudar(isManha: boolean, /*horas: number*/): string{
     // let a = 1 
