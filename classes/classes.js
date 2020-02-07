@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 class Data {
     constructor(dia = 1, mes = 1, ano = 1970) {
         this.dia = dia;
@@ -24,7 +25,7 @@ const aniversarioEsperto = new DataEsperta(3, 11, 1991);
 aniversario.dia = 4;
 console.log(aniversario.dia);
 console.log(aniversario);
-const casamentoEsperto = new DataEsperta; // posso omitor os ()
+const casamentoEsperto = new DataEsperta; // posso omitir os ()
 casamento.ano = 2017;
 console.log(casamento);
 class Produto {
@@ -77,6 +78,9 @@ console.log(carro1.frear());
 console.log(carro1.frear());
 const carro2 = new Carro('', '', 0);
 class Ferrari extends Carro {
+    constructor(modelo, velocidadeMaxima) {
+        super("Ferrari", modelo, velocidadeMaxima);
+    }
     acelerar() {
         return this.alterarVelocidade(20);
     }
@@ -84,8 +88,101 @@ class Ferrari extends Carro {
         return this.alterarVelocidade(-15);
     }
 }
-const f40 = new Ferrari('Ferrari', 'f40', 324);
+const f40 = new Ferrari('f40', 324);
 console.log(`${f40.marca} ${f40.modelo}`);
 console.log(f40.acelerar());
 console.log(f40.frear());
+class Teste {
+    constructor(nome) {
+        this.nome = nome;
+    }
+    getNome() {
+        return this.nome;
+    }
+}
+let t = new Teste(nome = "Mario");
+t = null;
+console.log((_a = t) === null || _a === void 0 ? void 0 : _a.getNome());
+//Getters & Setters 
+class Pessoa {
+    constructor() {
+        this._idade = 0;
+    }
+    get idade() {
+        return this._idade;
+    }
+    set idade(valor) {
+        if (valor >= 0 && valor <= 120) {
+            this._idade = valor;
+        }
+    }
+}
+const pessoa1 = new Pessoa;
+pessoa1.idade = 10;
+console.log(pessoa1.idade);
+// Atributos e metodos estaticos 
+class Matematica {
+    static areaCirc(raio) {
+        return this.PI * raio * raio;
+    }
+}
+Matematica.PI = 3.1416;
+//const m1 = new Matematica 
+//m1.PI = 4.2 
+//console.log(m1.areaCirc(4))
+console.log(Matematica.areaCirc(4));
+/*abstract class x {
+    abstract y(a: number): number
+    w(b: number): void {
+        console.log(b)
+    }
+} */
+//console.log(new x())
+class Calculo {
+    constructor() {
+        this.resultado = 0;
+    }
+    getResultado() {
+        return this.resultado;
+    }
+}
+class Soma extends Calculo {
+    executar(...numeros) {
+        this.resultado = numeros.reduce((t, a) => t + a);
+    }
+}
+class Multiplicacao extends Calculo {
+    executar(...numeros) {
+        this.resultado = numeros.reduce((t, a) => t * a);
+    }
+}
+let c1 = new Soma;
+c1.executar(2, 3, 4, 5);
+console.log(c1.getResultado());
+c1 = new Multiplicacao;
+c1.executar(2, 3, 4, 5);
+console.log(c1.getResultado());
+class Unico {
+    constructor() {
+    }
+    static getInstance() {
+        return Unico.instance;
+    }
+    agora() {
+        return new Date();
+    }
+}
+Unico.instance = new Unico;
+//const errado = new Unico
+console.log(Unico.getInstance().agora());
+// Somente Leitura 
+class Aviao {
+    constructor(modelo, prefixo) {
+        this.prefixo = prefixo;
+        this.modelo = modelo;
+    }
+}
+const turboHelice = new Aviao('Tu-114', 'PT-ABC');
+//turboHelice.modelo = 'DC-8'
+console.log(turboHelice);
 //# sourceMappingURL=classes.js.map

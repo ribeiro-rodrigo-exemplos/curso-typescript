@@ -32,7 +32,7 @@ aniversario.dia = 4
 console.log(aniversario.dia)
 console.log(aniversario)
 
-const casamentoEsperto = new DataEsperta // posso omitor os ()
+const casamentoEsperto = new DataEsperta // posso omitir os ()
 casamento.ano = 2017
 console.log(casamento)
 
@@ -95,6 +95,9 @@ console.log(carro1.frear())
 const carro2 = new Carro('','',0)
 
 class Ferrari extends Carro {
+    constructor(modelo: string, velocidadeMaxima: number){
+        super("Ferrari", modelo, velocidadeMaxima)
+    }
     public acelerar(): number{
         return this.alterarVelocidade(20)
     }
@@ -104,8 +107,123 @@ class Ferrari extends Carro {
     }
 }
 
-const f40 = new Ferrari('Ferrari', 'f40', 324)
+const f40 = new Ferrari('f40', 324)
 
 console.log(`${f40.marca} ${f40.modelo}`)
 console.log(f40.acelerar())
 console.log(f40.frear())
+
+class Teste{
+    constructor(private nome: string){}
+
+    public getNome(): string{
+        return this.nome 
+    }
+}
+
+let t: any = new Teste(nome="Mario")
+t = null 
+console.log(t?.getNome())
+
+//Getters & Setters 
+class Pessoa{
+    private _idade: number = 0
+
+    get idade(): number{
+        return this._idade
+    }
+
+    set idade(valor: number){
+        if(valor >= 0 && valor <= 120){
+            this._idade = valor; 
+        }
+    }
+}
+
+const pessoa1 = new Pessoa
+pessoa1.idade = 10 
+console.log(pessoa1.idade)
+
+// Atributos e metodos estaticos 
+
+class Matematica{
+    static PI: number = 3.1416 
+
+    static areaCirc(raio: number): number{
+        return this.PI * raio * raio
+    }
+}
+
+//const m1 = new Matematica 
+
+//m1.PI = 4.2 
+//console.log(m1.areaCirc(4))
+
+console.log(Matematica.areaCirc(4))
+
+/*abstract class x {
+    abstract y(a: number): number
+    w(b: number): void {
+        console.log(b)
+    }
+} */
+
+//console.log(new x())
+
+abstract class Calculo{
+    protected resultado: number = 0
+
+    abstract executar (...numeros: number[]): void 
+
+    getResultado(): number{
+        return this.resultado
+    }
+}
+
+class Soma extends Calculo{
+    executar(...numeros: number[]): void {
+        this.resultado = numeros.reduce((t, a) => t + a)
+    }
+}
+
+class Multiplicacao extends Calculo{
+    executar(...numeros: number[]): void {
+        this.resultado = numeros.reduce((t, a) => t * a)
+    }
+}
+
+let c1: Calculo = new Soma 
+c1.executar(2,3,4,5)
+console.log(c1.getResultado())
+
+c1 = new Multiplicacao 
+c1.executar(2,3,4,5)
+console.log(c1.getResultado())
+
+class Unico{
+    private static instance: Unico = new Unico
+    private constructor(){}
+
+    static getInstance(): Unico{
+        return Unico.instance
+    }
+
+    agora(){
+        return new Date() 
+    }
+}
+
+//const errado = new Unico
+console.log(Unico.getInstance().agora())
+
+// Somente Leitura 
+class Aviao{
+    public readonly modelo: string 
+    constructor(modelo: string, public readonly prefixo: string){
+        this.modelo = modelo 
+    }
+}
+
+const turboHelice = new Aviao('Tu-114', 'PT-ABC')
+//turboHelice.modelo = 'DC-8'
+console.log(turboHelice)
