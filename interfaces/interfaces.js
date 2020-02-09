@@ -37,4 +37,37 @@ potencia = function (base, exp) {
     return Array(exp).fill(base).reduce((t, a) => t * a);
 };
 console.log(potencia(3, 10));
+class RealA {
+    a() { }
+}
+class RealAB {
+    a() { }
+    b() { }
+}
+class RealABC {
+    a() { }
+    b() { }
+    c() { }
+}
+function teste(b) {
+    b.b();
+}
+teste(new RealABC);
+class AbstrataABD {
+    a() { }
+}
+Object.prototype.log = function () {
+    console.log(this.toString());
+};
+const x = 2;
+const y = 3;
+const z = 4;
+//console.log(x)
+//console.log(y)
+//console.log(z)
+x.log();
+y.log();
+z.log();
+const cli = { nome: 'Pedro', toString() { return this.nome; } };
+cli.log();
 //# sourceMappingURL=interfaces.js.map
